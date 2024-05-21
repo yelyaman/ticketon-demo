@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class User extends Model {
+class Client extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -9,6 +9,9 @@ class User extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
+        first_name: Sequelize.STRING,
+        last_name: Sequelize.STRING,
+        middle_name: Sequelize.STRING,
         username: Sequelize.STRING,
         password: Sequelize.STRING,
       },
@@ -24,4 +27,4 @@ class User extends Model {
   }
 }
 
-export default User;
+export default Client;

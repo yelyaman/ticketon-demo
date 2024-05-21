@@ -1,5 +1,4 @@
 import Sequelize, { Model } from 'sequelize';
-import { SEAT_STATUSES } from '../../utils/enums';
 
 class Movie extends Model {
   static init(sequelize) {
@@ -10,9 +9,11 @@ class Movie extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
-        numeration: { type: Sequelize.NUMBER, allowNull: false },
-				seat_status_id: { type: Sequelize.STRING, allowNull: false, defaultValue: SEAT_STATUSES },
-        hall_id: { type: Sequelize.UUID, allowNull: false },
+        name: Sequelize.STRING,
+        rating: Sequelize.FLOAT,
+        rated_count: Sequelize.INTEGER,
+        ratingAgeLimit: Sequelize.INTEGER,
+        genres: Sequelize.ARRAY(Sequelize.STRING)
       },
       {
         sequelize,

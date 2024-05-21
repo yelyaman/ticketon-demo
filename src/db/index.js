@@ -31,7 +31,7 @@ const sequelizeService = {
         model.default.associate && model.default.associate(connection.models);
       });
 
-      // await connection.sync({ alter: true });
+      await connection.sync({ force: true });
 
       console.log('[SEQUELIZE] Database service initialized');
     } catch (error) {

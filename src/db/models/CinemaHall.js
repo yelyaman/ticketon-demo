@@ -9,7 +9,7 @@ class CinemaHall extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
-        numeration: { type: Sequelize.NUMBER, allowNull: false },
+        numeration: { type: Sequelize.INTEGER, allowNull: false },
         cinema_id: { type: Sequelize.UUID, allowNull: false },
       },
       {

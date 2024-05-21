@@ -1,4 +1,4 @@
-const SEAT_STATUSES = {
+export const SEAT_STATUSES = {
 	RESERVED: 'RESERVED',
 	FREE: 'FREE',
 	NON: 'NON'
@@ -9,7 +9,7 @@ const PAYMENT_TYPES = {
 	OFFLINE: 'OFFLINE'
 }
 
-export default {
-	SEAT_STATUSES,
-	PAYMENT_TYPES
-}
+// export default {
+// 	SEAT_STATUSES,
+// 	PAYMENT_TYPES
+// }

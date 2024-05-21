@@ -1,4 +1,4 @@
-import File from '../../db/models/File.js';
+import File from '../../db/models/ReceiptFile.js';
 
 export default {
   async getOne(id, excludeBuffer) {

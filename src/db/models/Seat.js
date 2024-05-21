@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import { SEAT_STATUSES } from '../../utils/enums';
+import { SEAT_STATUSES } from '../../utils/enums.js';
 
 class Seat extends Model {
   static init(sequelize) {
@@ -10,8 +10,8 @@ class Seat extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
-        numeration: { type: Sequelize.NUMBER, allowNull: false },
-				seat_status_id: { type: Sequelize.STRING, allowNull: false, defaultValue: SEAT_STATUSES },
+        numeration: { type: Sequelize.INTEGER, allowNull: false },
+				seat_status: { type: Sequelize.ENUM(SEAT_STATUSES), allowNull: false, defaultValue: SEAT_STATUSES.FREE },
         hall_id: { type: Sequelize.UUID, allowNull: false },
       },
       {
