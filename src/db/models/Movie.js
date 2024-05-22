@@ -10,6 +10,7 @@ class Movie extends Model {
           primaryKey: true,
         },
         name: Sequelize.STRING,
+        kinopoisk_id: Sequelize.STRING,
         rating: Sequelize.FLOAT,
         rated_count: Sequelize.INTEGER,
         ratingAgeLimit: Sequelize.INTEGER,
