@@ -1,56 +1,48 @@
-import Customer from "../../db/models/Customer.js";
+import Client from "../../db/models/Movie.js";
 
 export default {
-  async getOne(id, excludeBuffer) {
-    const customer = await Customer.findByPk(id);
+  async getOne(id) {
+    const client = await Client.findByPk(id);
 
-    if (!customer) {
-      throw new Error("Customer not found");
+    if (!client) {
+      throw new Error("Client not found");
     }
 
-    if (excludeBuffer) {
-      delete customer.dataValues.buffer;
-    }
-
-    return customer.dataValues;
+    return client;
   },
 
   async getList(list_size, page) {
-    const customers = await Customer.findAll({
+    const clients = await Client.findAll({
       limit: list_size,
       offset: (page - 1) * list_size,
-      attributes: { exclude: ["buffer"] },
     });
 
-    return customers;
+    return clients;
   },
 
-  async create(createCustomerBody) {
-    return await Customer.bulkCreate(createCustomerBody, { returning: true });
+  async create(createBody) {
+    return await Client.bulkCreate(createBody);
   },
 
-  async update(id, newFile) {
-    const file = await Customer.findByPk(id);
+  async update(id, updateBody) {
+    const client = await Client.findByPk(id);
 
-    if (!file) {
-      throw new Error("File not found");
+    if (!client) {
+      throw new Error("cClient not found");
     }
 
-    const updatedFile = await file.update(newFile, {
+    return await client.update(updateBody, {
       returning: true,
     });
-
-    delete updatedFile.dataValues.buffer;
-    return updatedFile;
   },
 
   async delete(id) {
-    const file = await Customer.findByPk(id);
+    const client = await Client.findByPk(id);
 
-    if (!file) {
-      throw new Error("File not found");
+    if (!client) {
+      throw new Error("Client not found");
     }
 
-    await file.destroy();
+    await client.destroy();
   },
 };

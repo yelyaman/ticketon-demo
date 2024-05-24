@@ -27,7 +27,8 @@ export default {
 
   async create(req, res) {
     try {
-      const result = await service.create(req.body);
+      const createBody = req.body;
+      const result = await service.create(createBody);
 
       return res.status(200).send(result);
     } catch (err) {
@@ -39,11 +40,11 @@ export default {
   async update(req, res) {
     try {
       const id = req.params.id;
-      const updateCustomerBody = req.body;
+      const updateBody = req.body;
 
-      const updatedCustomer = await service.update(id, updateCustomerBody);
+      const updated = await service.update(id, updateBody);
 
-      return res.status(200).send(updatedCustomer);
+      return res.status(200).send(updated);
     } catch (err) {
       console.log(err);
       return res.status(500).send(err);

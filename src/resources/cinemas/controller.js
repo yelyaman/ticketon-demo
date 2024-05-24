@@ -4,9 +4,9 @@ export default {
   async getOne(req, res) {
     try {
       const { id } = req.params;
-      const client = await service.getOne(id, true);
+      const movie = await service.getOne(id, true);
 
-      return res.status(200).send(client);
+      return res.status(200).send(movie);
     } catch (err) {
       console.log(err);
       return res.status(500).send(err);
