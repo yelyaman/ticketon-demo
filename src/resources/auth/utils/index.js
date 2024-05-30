@@ -7,6 +7,6 @@ export default {
     return { accessToken, refreshToken };
   },
 
-  generateRefreshToken(user) {
-  },
+  // generateRefreshToken(user) {
+  // },
 };
