@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 export default {
-  async logout(user) {
+  async signout(user) {
     const newAccessToken = authUtils.generateAccessToken({
       id: user.id,
       username: user.username,
@@ -17,10 +17,8 @@ export default {
     const user = await User.findOne({ where: { username } });
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const accessToken = authUtils.generateAccessToken({ id: user.id, username: user.username });
-      const refreshToken = authUtils.generateRefreshToken({ id: user.id, username: user.username });
-
-      return { accessToken, refreshToken };
+      return authUtils.generateTokens({ id: user.id, username: user.username });
+      
     } else {
       throw new Error('Invalid username or password.');
     }

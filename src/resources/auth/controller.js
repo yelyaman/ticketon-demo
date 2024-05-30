@@ -11,9 +11,9 @@ export default {
     }
   },
 
-  async logout(req, res) {
+  async signout(req, res) {
     try {
-      const result = await service.logout(req.user);
+      const result = await service.signout(req.user);
 
       return res.status(200).send(result);
     } catch (err) {
