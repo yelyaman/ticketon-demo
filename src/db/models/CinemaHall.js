@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class CinemaHall extends Model {
   static init(sequelize) {
@@ -18,15 +18,18 @@ class CinemaHall extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
   static associate(models) {
-    this.hasMany(models.Seat, { foreignKey: 'cinema_hall_id', as: 'hall_seats' });
-    this.belongsTo(models.Cinema, { foreignKey: 'cinema_id', as: 'cinema' });
+    this.hasMany(models.Seat, {
+      foreignKey: 'cinema_hall_id',
+      as: 'hall_seats',
+    })
+    this.belongsTo(models.Cinema, { foreignKey: 'cinema_id', as: 'cinema' })
   }
 }
 
-export default CinemaHall;
+export default CinemaHall

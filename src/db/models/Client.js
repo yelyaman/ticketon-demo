@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Client extends Model {
   static init(sequelize) {
@@ -21,10 +21,10 @@ class Client extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 }
 
-export default Client;
+export default Client

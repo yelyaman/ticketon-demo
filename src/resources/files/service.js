@@ -1,18 +1,18 @@
-import File from '../../db/models/ReceiptFile.js';
+import File from '../../db/models/ReceiptFile.js'
 
 export default {
   async getOne(id, excludeBuffer) {
-    const file = await File.findByPk(id);
+    const file = await File.findByPk(id)
 
     if (!file) {
-      throw new Error('File not found');
+      throw new Error('File not found')
     }
 
     if (excludeBuffer) {
-      delete file.dataValues.buffer;
+      delete file.dataValues.buffer
     }
 
-    return file.dataValues;
+    return file.dataValues
   },
 
   async getList(list_size, page) {
@@ -20,42 +20,45 @@ export default {
       limit: list_size,
       offset: (page - 1) * list_size,
       attributes: { exclude: ['buffer'] },
-    });
+    })
 
-    return files;
+    return files
   },
 
   async upload(files) {
-    const uploadedFiles = await File.bulkCreate(files, { returning: true, raw: true });
+    const uploadedFiles = await File.bulkCreate(files, {
+      returning: true,
+      raw: true,
+    })
 
-    return uploadedFiles.map((file) => {
-      const { buffer, ...rest } = file.dataValues;
-      return rest;
-    });
+    return uploadedFiles.map(file => {
+      const { buffer, ...rest } = file.dataValues
+      return rest
+    })
   },
 
   async update(id, newFile) {
-    const file = await File.findByPk(id);
+    const file = await File.findByPk(id)
 
     if (!file) {
-      throw new Error('File not found');
+      throw new Error('File not found')
     }
 
     const updatedFile = await file.update(newFile, {
       returning: true,
-    });
+    })
 
-    delete updatedFile.dataValues.buffer;
-    return updatedFile;
+    delete updatedFile.dataValues.buffer
+    return updatedFile
   },
 
   async delete(id) {
-    const file = await File.findByPk(id);
+    const file = await File.findByPk(id)
 
     if (!file) {
-      throw new Error('File not found');
+      throw new Error('File not found')
     }
 
-    await file.destroy();
+    await file.destroy()
   },
-};
+}

@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Reservation extends Model {
   static init(sequelize) {
@@ -11,8 +11,7 @@ class Reservation extends Model {
         },
         client_id: Sequelize.UUID,
         customer_id: Sequelize.UUID,
-        schedule_id: Sequelize.UUID
-
+        schedule_id: Sequelize.UUID,
       },
       {
         sequelize,
@@ -20,13 +19,12 @@ class Reservation extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
-  static associate(models) {
-  }
+  // static associate(models) {}
 }
 
-export default Reservation;
+export default Reservation

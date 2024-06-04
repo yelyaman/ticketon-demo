@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import 'dotenv/config'
 
 export default {
   dialect: process.env.DB_DIALECT,
@@ -13,4 +13,4 @@ export default {
     timestamps: true,
   },
   // timezone: "+06:00",
-};
+}

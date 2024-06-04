@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Schedule extends Model {
   static init(sequelize) {
@@ -12,8 +12,7 @@ class Schedule extends Model {
         cinema_id: Sequelize.UUID,
         movie_id: Sequelize.UUID,
         start_at: Sequelize.DATEONLY,
-        end_at: Sequelize.DATEONLY
-
+        end_at: Sequelize.DATEONLY,
       },
       {
         sequelize,
@@ -21,13 +20,12 @@ class Schedule extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
-  static associate(models) {
-  }
+  // static associate(models) {}
 }
 
-export default Schedule;
+export default Schedule

@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Country extends Model {
   static init(sequelize) {
@@ -17,14 +17,14 @@ class Country extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
   static associate(models) {
-    this.hasMany(models.City, { foreignKey: 'country_id', as: 'cities' });
+    this.hasMany(models.City, { foreignKey: 'country_id', as: 'cities' })
   }
 }
 
-export default Country;
+export default Country

@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Transaction extends Model {
   static init(sequelize) {
@@ -8,7 +8,7 @@ class Transaction extends Model {
           type: Sequelize.UUID,
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
-        }
+        },
       },
       {
         sequelize,
@@ -16,13 +16,12 @@ class Transaction extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
-  static associate(models) {
-  }
+  // static associate(models) {}
 }
 
-export default Transaction;
+export default Transaction

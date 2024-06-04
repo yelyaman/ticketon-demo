@@ -1,48 +1,48 @@
-import Schedule from "../../db/models/Schedule.js";
+import Schedule from '../../db/models/Schedule.js'
 
 export default {
   async getOne(id) {
-    const schedule = await Schedule.findByPk(id);
+    const schedule = await Schedule.findByPk(id)
 
     if (!schedule) {
-      throw new Error("schedule not found");
+      throw new Error('schedule not found')
     }
 
-    return schedule;
+    return schedule
   },
 
   async getList(list_size, page) {
     const schedules = await Schedule.findAll({
       limit: list_size,
       offset: (page - 1) * list_size,
-    });
+    })
 
-    return schedules;
+    return schedules
   },
 
   async create(createBody) {
-    return await Schedule.bulkCreate(createBody);
+    return await Schedule.bulkCreate(createBody)
   },
 
   async update(id, updateBody) {
-    const schedule = await Schedule.findByPk(id);
+    const schedule = await Schedule.findByPk(id)
 
     if (!schedule) {
-      throw new Error("Movie not found");
+      throw new Error('Movie not found')
     }
 
     return await Schedule.update(updateBody, {
       returning: true,
-    });
+    })
   },
 
   async delete(id) {
-    const schedule = await Schedule.findByPk(id);
+    const schedule = await Schedule.findByPk(id)
 
     if (!schedule) {
-      throw new Error("schedule not found");
+      throw new Error('schedule not found')
     }
 
-    await schedule.destroy();
+    await schedule.destroy()
   },
-};
+}

@@ -1,5 +1,5 @@
-import Sequelize, { Model } from 'sequelize';
-import { SEAT_STATUSES } from '../../utils/enums.js';
+import Sequelize, { Model } from 'sequelize'
+import { SEAT_STATUSES } from '../../utils/enums.js'
 
 class Seat extends Model {
   static init(sequelize) {
@@ -11,7 +11,11 @@ class Seat extends Model {
           primaryKey: true,
         },
         numeration: { type: Sequelize.INTEGER, allowNull: false },
-				seat_status: { type: Sequelize.ENUM(SEAT_STATUSES), allowNull: false, defaultValue: SEAT_STATUSES.FREE },
+        seat_status: {
+          type: Sequelize.ENUM(SEAT_STATUSES),
+          allowNull: false,
+          defaultValue: SEAT_STATUSES.FREE,
+        },
         hall_id: { type: Sequelize.UUID, allowNull: false },
       },
       {
@@ -20,15 +24,21 @@ class Seat extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
   static associate(models) {
-    this.hasMany(models.Seat, { foreignKey: 'cinema_hall_id', as: 'hall_seats' });
-    this.belongsTo(models.CinemaHall, { foreignKey: 'hall_id', as: 'cinema_hall' });
+    this.hasMany(models.Seat, {
+      foreignKey: 'cinema_hall_id',
+      as: 'hall_seats',
+    })
+    this.belongsTo(models.CinemaHall, {
+      foreignKey: 'hall_id',
+      as: 'cinema_hall',
+    })
   }
 }
 
-export default Seat;
+export default Seat

@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Customer extends Model {
   static init(sequelize) {
@@ -22,9 +22,9 @@ class Customer extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 
   static associate(models) {
@@ -32,4 +32,4 @@ class Customer extends Model {
   }
 }
 
-export default Customer;
+export default Customer

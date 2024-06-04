@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class File extends Model {
   static init(sequelize) {
@@ -21,10 +21,10 @@ class File extends Model {
         timestamps: true,
         underscored: true,
       },
-    );
+    )
 
-    return this;
+    return this
   }
 }
 
-export default File;
+export default File
