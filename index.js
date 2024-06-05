@@ -1,11 +1,11 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import middlewares from './src/middlewares/index.js'
 import authorization from './src/resources/auth/router.js'
 import files from './src/resources/files/router.js'
 import db from './src/db/index.js'
-import { RedisCacheClient } from './src/utils/cache.js'
 import helmet from 'helmet'
+import cors from 'cors'
+import { RedisCacheClient } from './src/utils/cache.js'
 dotenv.config()
 
 try {
@@ -14,15 +14,15 @@ try {
   app.use(helmet())
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
-  app.use(middlewares.cors)
+  app.use(cors)
 
   db.init()
 
   app.use('/auth', authorization)
   app.use('/file', files)
 
-  RedisCacheClient.connect()
-  app.listen(process.env.PORT, () =>
+  // RedisCacheClient.connect()
+  app.listen(process.env.PORT || 3000, () =>
     console.log(`Express app running on port ${process.env.PORT}!`),
   )
 } catch (error) {

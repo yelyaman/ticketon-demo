@@ -24,7 +24,7 @@ class CinemaHall extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Seat, {
+    (this as typeof CinemaHall).hasMany(models.Seat, {
       foreignKey: 'cinema_hall_id',
       as: 'hall_seats',
     })
