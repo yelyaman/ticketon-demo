@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize'
 
-class Client extends Model {
+class TicketonFile extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -9,11 +9,11 @@ class Client extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
-        first_name: Sequelize.STRING,
-        last_name: Sequelize.STRING,
-        middle_name: Sequelize.STRING,
-        username: Sequelize.STRING,
-        password: Sequelize.STRING,
+        originalname: Sequelize.STRING,
+        encoding: Sequelize.STRING,
+        mimetype: Sequelize.STRING,
+        buffer: Sequelize.BLOB('long'),
+        size: Sequelize.BIGINT,
       },
       {
         sequelize,
@@ -27,4 +27,4 @@ class Client extends Model {
   }
 }
 
-export default Client
+export default TicketonFile

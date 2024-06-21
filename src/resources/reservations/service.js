@@ -1,4 +1,4 @@
-import Reservation from '../../db/models/Reservation.js'
+import { Reservation } from "@/database"
 
 export default {
   async getOne(id) {

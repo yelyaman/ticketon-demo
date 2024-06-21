@@ -1,6 +1,6 @@
 import express from 'express'
-import controller from './controller.js'
-import middlewares from '../../middlewares/index.js'
+import controller from './controller'
+import middlewares from '@/src/middlewares'
 import multer from 'multer'
 
 const storage = multer.memoryStorage()

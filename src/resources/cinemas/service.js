@@ -1,4 +1,4 @@
-import Cinema from '../../db/models/Cinema.js'
+import { Cinema } from '@/database'
 
 export default {
   async getOne(id) {

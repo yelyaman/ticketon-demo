@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize'
 
-class File extends Model {
+class Consumer extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -9,11 +9,11 @@ class File extends Model {
           defaultValue: Sequelize.literal('uuid_generate_v4()'),
           primaryKey: true,
         },
-        originalname: Sequelize.STRING,
-        encoding: Sequelize.STRING,
-        mimetype: Sequelize.STRING,
-        buffer: Sequelize.BLOB('long'),
-        size: Sequelize.BIGINT,
+        first_name: Sequelize.STRING,
+        last_name: Sequelize.STRING,
+        middle_name: Sequelize.STRING,
+        username: Sequelize.STRING,
+        password: Sequelize.STRING,
       },
       {
         sequelize,
@@ -27,4 +27,4 @@ class File extends Model {
   }
 }
 
-export default File
+export default Consumer

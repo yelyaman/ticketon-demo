@@ -1,5 +1,5 @@
-import User from '../../db/models/User.js'
-import authUtils from './utils/index.js'
+import { Customer } from '@/database'
+import authUtils from './utils'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
@@ -14,7 +14,7 @@ export default {
   },
 
   async signin(username, password) {
-    const user = await User.findOne({ where: { username } })
+    const user = await Customer.findOne({ where: { username } })
 
     if (user && bcrypt.compareSync(password, user.password)) {
       return authUtils.generateTokens({ id: user.id, username: user.username })
@@ -35,7 +35,7 @@ export default {
 
   async signup(username, password) {
     const hashedPassword = await bcrypt.hash(password, 10)
-    const user = await User.create({ username, password: hashedPassword })
+    const user = await Customer.create({ username, password: hashedPassword })
 
     const accessToken = authUtils.generateAccessToken({
       id: user.id,

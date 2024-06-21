@@ -1,10 +1,10 @@
-import service from './service.js'
+import service from './service'
 
 export default {
   async getOne(req, res) {
     try {
       const { id } = req.params
-      const movie = await service.getOne(id, true)
+      const movie = await service.getOne(id)
 
       return res.status(200).send(movie)
     } catch (err) {

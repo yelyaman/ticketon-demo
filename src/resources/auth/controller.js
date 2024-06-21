@@ -1,4 +1,4 @@
-import service from './service.js'
+import service from './service'
 
 export default {
   async getInfo(req, res) {

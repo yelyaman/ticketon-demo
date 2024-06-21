@@ -1,4 +1,4 @@
-import Movie from '../../db/models/Movie.js'
+import { Movie } from "@/database"
 
 export default {
   async getOne(id) {

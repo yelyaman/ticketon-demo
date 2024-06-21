@@ -1,4 +1,4 @@
-import Schedule from '../../db/models/Schedule.js'
+import { Schedule } from "@/database"
 
 export default {
   async getOne(id) {

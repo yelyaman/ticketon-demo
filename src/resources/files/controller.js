@@ -1,4 +1,4 @@
-import service from './service.js'
+import service from './service'
 import contentDisposition from 'content-disposition'
 
 export default {

@@ -1,4 +1,4 @@
-import Customer from '../../db/models/Customer.js'
+import { Customer } from "@/database"
 
 export default {
   async getOne(id) {

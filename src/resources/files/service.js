@@ -1,8 +1,8 @@
-import File from '../../db/models/ReceiptFile.js'
+import { TicketonFile } from '@/database'
 
 export default {
   async getOne(id, excludeBuffer) {
-    const file = await File.findByPk(id)
+    const file = await TicketonFile.findByPk(id)
 
     if (!file) {
       throw new Error('File not found')
@@ -16,7 +16,7 @@ export default {
   },
 
   async getList(list_size, page) {
-    const files = await File.findAll({
+    const files = await TicketonFile.findAll({
       limit: list_size,
       offset: (page - 1) * list_size,
       attributes: { exclude: ['buffer'] },
@@ -26,7 +26,7 @@ export default {
   },
 
   async upload(files) {
-    const uploadedFiles = await File.bulkCreate(files, {
+    const uploadedFiles = await TicketonFile.bulkCreate(files, {
       returning: true,
       raw: true,
     })
@@ -38,7 +38,7 @@ export default {
   },
 
   async update(id, newFile) {
-    const file = await File.findByPk(id)
+    const file = await TicketonFile.findByPk(id)
 
     if (!file) {
       throw new Error('File not found')
@@ -53,7 +53,7 @@ export default {
   },
 
   async delete(id) {
-    const file = await File.findByPk(id)
+    const file = await TicketonFile.findByPk(id)
 
     if (!file) {
       throw new Error('File not found')

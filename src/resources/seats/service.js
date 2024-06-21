@@ -1,4 +1,4 @@
-import Seat from '../../db/models/Seat.js'
+import { Seat } from "@/database"
 
 export default {
   async getOne(id) {

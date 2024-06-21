@@ -1,4 +1,4 @@
-import CinemaHall from '../../db/models/CinemaHall.js'
+import { CinemaHall } from '@/database'
 
 export default {
   async getOne(id) {

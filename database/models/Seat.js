@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize'
-import { SEAT_STATUSES } from '../../utils/enums.js'
+import { SEAT_STATUSES } from '../../src/utils/enums.js'
 
 class Seat extends Model {
   static init(sequelize) {
