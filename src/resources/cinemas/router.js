@@ -1,13 +1,19 @@
 import express from 'express'
 import controller from './controller'
-import middlewares from '@/src/middlewares'
+import { validatePayload, checkAuth } from '@/src/middlewares'
+import { CreateBranchSchema } from './validator'
 
 const router = express.Router()
 
-router.get('/', middlewares.authMiddleware, controller.getList)
-router.get('/:id', middlewares.authMiddleware, controller.getOne)
-router.post('/', middlewares.authMiddleware, controller.create)
-router.patch('/:id', middlewares.authMiddleware, controller.update)
-router.delete('/delete/:id', middlewares.authMiddleware, controller.delete)
+router.get('/', checkAuth, controller.getList)
+router.get('/:id', checkAuth, controller.getOne)
+router.post(
+  '/',
+  checkAuth,
+  validatePayload(CreateBranchSchema),
+  controller.create,
+)
+router.patch('/:id', checkAuth, controller.update)
+router.delete('/delete/:id', checkAuth, controller.delete)
 
 export default router
