@@ -1,3 +1,5 @@
+import createHttpError from 'http-errors'
+
 export default validator => {
   return async (req, res, next) => {
     try {
@@ -5,7 +7,8 @@ export default validator => {
       req.body = validated
       next()
     } catch (err) {
-      next(err)
+      if (err.isJoi) return next(createHttpError(422, { message: err.message }))
+      next(createHttpError(500))
     }
   }
 }

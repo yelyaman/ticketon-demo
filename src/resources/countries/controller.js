@@ -27,8 +27,8 @@ export default {
 
   async create(req, res) {
     try {
-      const { seats } = req.body
-      const created = await service.create(seats)
+      const createBody = req.body
+      const created = await service.create(createBody)
 
       return res.status(200).send(created)
     } catch (err) {

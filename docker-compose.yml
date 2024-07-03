@@ -1,19 +1,54 @@
-version: '1'
+version: '3.8'
 services:
-  web:
-    build: .
-    command: npm run dev
+  postgresdb:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    container_name: db
+    ports:
+      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
+    volumes:
+      - db:/var/lib/postgres
+  cache:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - cache:/data
+  app:
+    depends_on:
+      - postgresdb
+      - cache
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: ticketon
+    container_name: ticketon
+    restart: unless-stopped
+    command: npm run start
+    environment:
+      - DB_HOST=postgresdb
+      - DB_USER=$POSTGRESDB_USER
+      - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - DB_NAME=$POSTGRESDB_DATABASE
+      - DB_PORT=$POSTGRESDB_DOCKER_PORT
+      - REDIS_HOST=cache # вынести в env
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
     ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://todoapp@postgres/todos
-  postgres:
-    image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: todoapp
-      POSTGRES_DB: todos
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    stdin_open: true
+    tty: true
+volumes:
+  db:
+  cache:
+    driver: local

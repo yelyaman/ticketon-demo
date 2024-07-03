@@ -1,5 +1,5 @@
+import { SEAT_STATUSES } from '@/src/utils/enums'
 import Sequelize, { Model } from 'sequelize'
-import { SEAT_STATUSES } from '../../src/utils/enums.js'
 
 class Seat extends Model {
   static init(sequelize) {
@@ -12,7 +12,7 @@ class Seat extends Model {
         },
         numeration: { type: Sequelize.INTEGER, allowNull: false },
         seat_status: {
-          type: Sequelize.ENUM(SEAT_STATUSES),
+          type: Sequelize.ENUM({values: Object.values(SEAT_STATUSES)}),
           allowNull: false,
           defaultValue: SEAT_STATUSES.FREE,
         },
@@ -30,10 +30,6 @@ class Seat extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Seat, {
-      foreignKey: 'cinema_hall_id',
-      as: 'hall_seats',
-    })
     this.belongsTo(models.CinemaHall, {
       foreignKey: 'hall_id',
       as: 'cinema_hall',

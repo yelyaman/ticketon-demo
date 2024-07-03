@@ -10,6 +10,7 @@ const modelsPath = path.join(__dirname + '/models')
 
 const sequelize = new Sequelize({
   ...config.postgres,
+  dialect: 'postgres',
   dialectOptions: {
     application_name: postgres.applicationName,
   },
@@ -50,6 +51,7 @@ db.ping = async () => {
   const date = new Date()
   try {
     await sequelize.authenticate()
+    await sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
     return {
       working: true,
       date,

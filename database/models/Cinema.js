@@ -16,6 +16,7 @@ class Cinema extends Model {
       },
       {
         sequelize,
+        tableName: 'Cinema',
         paranoid: true,
         timestamps: true,
         underscored: true,

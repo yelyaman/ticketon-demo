@@ -2,11 +2,10 @@
   "name": "ticketon-demo",
   "version": "1.0.0",
   "description": "Demo project, for practic",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r esm -r module-alias/register index.js",
-    "start": "nodemon index.js",
+    "start": "node -r esm -r module-alias/register index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:fix": "eslint --fix ./*.js"
   },
@@ -25,12 +24,12 @@
     "esm": "^3.2.25",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
+    "ioredis": "^5.4.1",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.11.5",
-    "redis": "^4.6.14",
     "sequelize": "^6.37.3",
     "stripe": "^15.7.0"
   },

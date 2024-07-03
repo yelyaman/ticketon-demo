@@ -21,7 +21,7 @@ export default {
   },
 
   async create(createBody) {
-    return await Cinema.bulkCreate(createBody)
+    return await Cinema.create(createBody)
   },
 
   async update(id, updateBody) {

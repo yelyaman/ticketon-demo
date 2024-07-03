@@ -21,7 +21,7 @@ export default {
   },
 
   async create(createBody) {
-    return await Consumer.bulkCreate(createBody)
+    return await Consumer.create(createBody)
   },
 
   async update(id, updateBody) {
